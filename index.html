@@ -7,6 +7,7 @@
     <title>我的个人简历</title>
     <script src="./jquery.js"></script>
     <link rel="stylesheet" type="text/css" href="./loader.css">
+    <link rel="stylesheet" href="./swiper-4.1.0.min.css">
     <link rel="stylesheet" href="./main.css">
     <script type="text/javascript" src="//at.alicdn.com/t/font_453836_5aecfg9ttiseb3xr.js"></script>
     <style type="text/css">
@@ -19,6 +20,7 @@
 </style>
 </head>
 <body>
+
 <div id="loader-wrapper">
   <div id="loader"></div>
   <div class="loader-section section-left"></div>
@@ -178,133 +180,31 @@
 </section>
 
 <section data-x id="siteWorks" class="portfolio">
-  <h2>作品集</h2>
-  <nav>
-    <ol class="clearfix">
-      <li id="portfolio1">所有</li>
-      <li id="portfolio2">框架</li>
-      <li id="portfolio3">原生JS &amp; CSS </li>
-    </ol>
-    <div id="portfolioBar" class="bar state-1">
-          <div class="bar-inner"></div>
-    </div>
-  </nav>
-  <script>
-       portfolio1.onclick= function(){
-         portfolioBar.className = 'bar state-1'
-       }
-       portfolio2.onclick= function(){
-         portfolioBar.className = 'bar state-2'
-       }
-       portfolio3.onclick= function(){
-         portfolioBar.className = 'bar state-3'
-       }
-     </script>
-  <div class="works" >
-      <div class="big" style="top: 0; left: 6px;">
-        <img src="./img/1.jpg" alt="作品1">
-      </div>
-      <div class="small" style="top: 0; left: 639px;">
-        <img src="./img/2.jpg" alt="作品2">
-      </div>
-      <div class="small" style="top: 312px; left: 639px;">
-        <img src="./img/3.jpg" alt="作品3">
-      </div>
-    </div>
+    <h2>作品集</h2>
+    <div id="mySlides">
+        <div class="swiper-container">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <img src="./img/nav-page.jpg" class="swiper-slide">
+                <img src="/img/canvas.jpg" class="swiper-slide">
+                <img src="/img/apple-style-slide.jpg" class="swiper-slide">
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+     </div>
 </section>
 
+<script src="./swiper-4.1.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.1.1/Tween.min.js"></script>
-<script type="text/javascript">
-let specialTags=document.querySelectorAll('[data-x]')
-for(let i=0; i<specialTags.length; i++){
-specialTags[i].classList.add('offset')
-}
-
-setTimeout(function(){
-  let minIndex = 0;
-  for(let i=1; i<specialTags.length; i++){
-    if (Math.abs(specialTags[i].offsetTop - window.scrollY) < Math.abs(specialTags[minIndex].offsetTop- window.scrollY)) {
-      minIndex=i;
-    }
-  }
-  specialTags[minIndex].classList.remove('offset');
-},500)
-
-
-window.onscroll = function(zzzz) {
-  if (window.scrollY>0) {
-    topNavBar.classList.add('sticky')
-  }else {
-    topNavBar.classList.remove('sticky')
-  }
-  let specialTags=document.querySelectorAll('[data-x]')
-  let minIndex = 0;
-  for(let i=1; i<specialTags.length; i++){
-    if (Math.abs(specialTags[i].offsetTop - window.scrollY) < Math.abs(specialTags[minIndex].offsetTop- window.scrollY)) {
-      minIndex=i;
-    }
-  }
-  // minIndex 就是距离窗口顶部最近的元素
-  specialTags[minIndex].classList.remove('offset');
-  let id = specialTags[minIndex].id;
-  let a = document.querySelector('a[href=\'#'+ id +'\']');
-  let li = a.parentNode;
-  let brothersAndMe= li.parentNode.children;
-  for(i=0;i<brothersAndMe.length;i++){
-    brothersAndMe[i].classList.remove('highlight');
-  }
-  li.classList.add('highlight');
-}
-
-
-
-let liTags = document.querySelectorAll('nav.menu>ul>li')
-for(let i=0; i<liTags.length; i++){
-  liTags[i].onmouseenter = function(x){
-    x.currentTarget.classList.add('active');
-  }
-  liTags[i].onmouseleave = function(x){
-    x.currentTarget.classList.remove('active')
-  }
-}
-let aTags = document.querySelectorAll('nav.menu>ul>li>a')
-for (let i=0; i<aTags.length; i++){
-  aTags[i].onclick = function(x){
-    x.preventDefault();
-    let a = x.currentTarget;
-    let href=a.getAttribute('href')
-    let element=document.querySelector(href);
-    let top = element.offsetTop;
-    let currentTop = window.scrollY;
-    let targetTop = top-80
-    let s = targetTop - currentTop;
-    function animate(time) {
-        requestAnimationFrame(animate);
-        TWEEN.update(time);
-    }
-    requestAnimationFrame(animate);
-    var coords = { y:currentTop};
-    var t=Math.abs((s/100)*310)
-    if (t>500){
-      t=500;
-    }
-    var tween = new TWEEN.Tween(coords)
-            .to({y: targetTop }, t)
-            .easing(TWEEN.Easing.Quadratic.InOut)
-            .onUpdate(function() {
-                window.scrollTo(0,coords.y);
-            })
-            .start();
-  }
-}
-</script>
-
-<script type="text/javascript">
-    // 等待所有加载
-    $(window).load(function(){
-        $('body').addClass('loaded');
-        $('#loader-wrapper .load_title').remove();
-    });
-</script>
+<!-- 模块化 -->
+<script src="./init-swiper.js"></script>
+<script src="./auto-slide-up.js"></script>
+<script src="./sticky-topbar.js"></script>
+<script src="./smoothly-navigation.js"></script>
+<script src="./pull-down-menu.js"></script>
+<script src="./loader.js"></script>
 </body>
 </html>
