@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>我的个人简历</title>
-    <script src="./jquery.js"></script>
-    <link rel="stylesheet" type="text/css" href="./loader.css">
+    <script type="text/javascript" src="//at.alicdn.com/t/font_453836_5aecfg9ttiseb3xr.js"></script>
     <link rel="stylesheet" href="./swiper-4.1.0.min.css">
     <link rel="stylesheet" href="./main.css">
-    <script type="text/javascript" src="//at.alicdn.com/t/font_453836_5aecfg9ttiseb3xr.js"></script>
     <style type="text/css">
     .icon {
        width: 1em; height: 1em;
@@ -21,12 +19,6 @@
 </head>
 <body>
 
-<div id="loader-wrapper">
-  <div id="loader"></div>
-  <div class="loader-section section-left"></div>
-  <div class="loader-section section-right"></div>
-  <div class="load_title">正在加载简历</div>
-</div>
 <div  id="topNavBar"class="topNavBar">
     <div class="topNavBar-inner clearfix">
         <a class="logo" href="#" alt="logo">
@@ -196,15 +188,26 @@
         <div class="swiper-button-next"></div>
      </div>
 </section>
-
+<section class="message">
+    <h2>留言</h2>
+    <ol id="messageList"></ol>
+    <form id="postMessageForm" style="width:700px;margin:50px auto;" action="">
+        <label for="">姓名</label>
+        <input type="text" name="name">
+        <label for="">内容</label>
+        <input type="text" name="content">
+        <input type="submit" value="提交">
+    </form>
+</section>
 <script src="./swiper-4.1.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.1.1/Tween.min.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.5.0/av-min.js"></script>
 <!-- 模块化 -->
 <script src="./init-swiper.js"></script>
 <script src="./auto-slide-up.js"></script>
 <script src="./sticky-topbar.js"></script>
 <script src="./smoothly-navigation.js"></script>
 <script src="./pull-down-menu.js"></script>
-<script src="./loader.js"></script>
+<script src="./message.js"></script>
 </body>
 </html>
